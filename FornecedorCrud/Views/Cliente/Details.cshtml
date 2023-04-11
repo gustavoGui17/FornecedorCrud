@@ -1,4 +1,4 @@
-﻿@model FornecedorCrud.Models.Fornecedor
+﻿@model FornecedorCrud.Models.Cliente
 
 @{
     ViewData["Title"] = "Details";
@@ -7,9 +7,15 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Fornecedor</h4>
+    <h4>Cliente</h4>
     <hr />
     <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nome)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.documento)
         </dt>
@@ -27,12 +33,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.senha)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.nome)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.telefone)

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FornecedorCrud.Models.Fornecedor>
+﻿@model IEnumerable<FornecedorCrud.Models.Cliente>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.nome)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.documento)
             </th>
             <th>
@@ -20,9 +23,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.senha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nome)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.telefone)
@@ -34,6 +34,9 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.documento)
             </td>
             <td>
@@ -41,9 +44,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.senha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.telefone)

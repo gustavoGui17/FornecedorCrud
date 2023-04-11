@@ -9,83 +9,83 @@ using FornecedorCrud.Models;
 
 namespace FornecedorCrud.Controllers
 {
-    public class FornecedorController : Controller
+    public class ClienteController : Controller
     {
         private readonly Contexto _context;
 
-        public FornecedorController(Contexto context)
+        public ClienteController(Contexto context)
         {
             _context = context;
         }
 
-        // GET: Fornecedor
+        // GET: Cliente
         public async Task<IActionResult> Index()
         {
-              return _context.Fornecedor != null ? 
-                          View(await _context.Fornecedor.ToListAsync()) :
-                          Problem("Entity set 'Contexto.Fornecedor'  is null.");
+              return _context.Cliente != null ? 
+                          View(await _context.Cliente.ToListAsync()) :
+                          Problem("Entity set 'Contexto.Cliente'  is null.");
         }
 
-        // GET: Fornecedor/Details/5
+        // GET: Cliente/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Fornecedor == null)
+            if (id == null || _context.Cliente == null)
             {
                 return NotFound();
             }
 
-            var fornecedor = await _context.Fornecedor
+            var cliente = await _context.Cliente
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (fornecedor == null)
+            if (cliente == null)
             {
                 return NotFound();
             }
 
-            return View(fornecedor);
+            return View(cliente);
         }
 
-        // GET: Fornecedor/Create
+        // GET: Cliente/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Fornecedor/Create
+        // POST: Cliente/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,documento,email,senha,nome,telefone")] Fornecedor fornecedor)
+        public async Task<IActionResult> Create([Bind("id,nome,documento,email,senha,telefone")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(fornecedor);
+                _context.Add(cliente);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(fornecedor);
+            return View(cliente);
         }
 
-        // GET: Fornecedor/Edit/5
+        // GET: Cliente/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Fornecedor == null)
+            if (id == null || _context.Cliente == null)
             {
                 return NotFound();
             }
 
-            var fornecedor = await _context.Fornecedor.FindAsync(id);
-            if (fornecedor == null)
+            var cliente = await _context.Cliente.FindAsync(id);
+            if (cliente == null)
             {
                 return NotFound();
             }
-            return View(fornecedor);
+            return View(cliente);
         }
 
-        // POST: Fornecedor/Edit/5
+        // POST: Cliente/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,documento,email,senha,nome,telefone")] Fornecedor fornecedor)
+        public async Task<IActionResult> Edit(int id, [Bind("id,nome,documento,email,senha,telefone")] Cliente cliente)
         {
-            if (id != fornecedor.id)
+            if (id != cliente.id)
             {
                 return NotFound();
             }
@@ -94,12 +94,12 @@ namespace FornecedorCrud.Controllers
             {
                 try
                 {
-                    _context.Update(fornecedor);
+                    _context.Update(cliente);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FornecedorExists(fornecedor.id))
+                    if (!ClienteExists(cliente.id))
                     {
                         return NotFound();
                     }
@@ -110,49 +110,49 @@ namespace FornecedorCrud.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(fornecedor);
+            return View(cliente);
         }
 
-        // GET: Fornecedor/Delete/5
+        // GET: Cliente/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Fornecedor == null)
+            if (id == null || _context.Cliente == null)
             {
                 return NotFound();
             }
 
-            var fornecedor = await _context.Fornecedor
+            var cliente = await _context.Cliente
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (fornecedor == null)
+            if (cliente == null)
             {
                 return NotFound();
             }
 
-            return View(fornecedor);
+            return View(cliente);
         }
 
-        // POST: Fornecedor/Delete/5
+        // POST: Cliente/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Fornecedor == null)
+            if (_context.Cliente == null)
             {
-                return Problem("Entity set 'Contexto.Fornecedor'  is null.");
+                return Problem("Entity set 'Contexto.Cliente'  is null.");
             }
-            var fornecedor = await _context.Fornecedor.FindAsync(id);
-            if (fornecedor != null)
+            var cliente = await _context.Cliente.FindAsync(id);
+            if (cliente != null)
             {
-                _context.Fornecedor.Remove(fornecedor);
+                _context.Cliente.Remove(cliente);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FornecedorExists(int id)
+        private bool ClienteExists(int id)
         {
-          return (_context.Fornecedor?.Any(e => e.id == id)).GetValueOrDefault();
+          return (_context.Cliente?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }
